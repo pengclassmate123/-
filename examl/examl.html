@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>开发者-ltEc</title>
+	<link rel="stylesheet" type="text/css" href="css/content.css">
+	<script src="script/jquery-3.5.1.min.js"></script>
+	<script src="script/list.js"></script>
+</head>
+<body>
+		<div class="nav">									<!-- 头部导航栏 -->	
+			<div class="navContent">
+				<div class="navImg"><img class="navLogo" src="image/logo.png"/></div>
+				<div class="navUl">
+					<ul>
+						<li>全部课程</li>
+						<li>学习路径</li>
+						<li>讨论区</li>
+						<li>图书馆</li>
+						<li>开发者</li>
+					</ul>
+				</div>
+				<div class="navinput"><input type="text" value="搜索课程"><button>搜索</button></div>
+			</div>
+		</div>
+		<div class="contentOne">							<!-- 内容一 -->	
+			<div>	
+				<h1>来一场高效又实战的训练</h1>
+				<h4>海量题库在线练习，实战中融会贯通
+				IT技术</h4>
+			</div>
+		</div>
+		<div class="contentTwo">							<!-- 内容二 -->
+			<div>
+				<div class="list">	
+						<p><image src="image/题库.png"/></p>
+						<span>海量题库</span>
+						<span>专注实战</span>
+				</div>
+				<div class="list">
+					<p><image src="image/讨论.png"/></p>
+					<span>讨论区</span>
+					<span>不懂就问</span>
+				</div>
+				<div class="list">
+					<p><image src="image/成绩.png"/></p>
+					<span>成绩测评</span>
+					<span>悉心分析</span>
+				</div>
+			</div>
+		</div>
+		<div class="contentThree">
+			<div class="contentCenter">
+				<div class="contentTitle">
+					<h4 class="contentTh4">测试课堂</h4>
+					<div class="contentd">在线做题,激发潜在实力</div>
+				</div>
+				
+				<div id='dataList'>
+
+					<!--<div class="contentExam">
+						<div class="ExamOne">
+							<div class="ExamImg">
+								<img src="image/1.jpg" alt="JavaScriptLOGO图">
+							</div>
+							<div class="ExamdEtailed">
+								<div class="ExamCont">
+									<h4 class="ExamTit "><span class="ExamH4">已更新</span>JavaScript面试题</h4>
+									<div class="ExamDD"><p>实验楼携手信息安全工程师共同制作10个后门技术实验，带你体验 Kali 系统渗透测试的魅力。完成	本课你将实践渗透成功后的维持访问的方法，其中有专门的实验讲解木马制作及对后门木马的源码分析。</p>
+									</div>
+									<div class="Exambbtn">
+										<div class="ExambbtnD1">题目数量：50</div>
+										<div class="ExambbtnD2">测试时间：40分钟 </div>
+										<div class="ExambbtnD3">进入测试</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>-->
+
+				</div>
+				
+				
+				<div class="contentBTN">
+					<ul class="contentbbtn">
+						<li class="btnOne">上一页</li>
+						<li class="btnTwo">1</li>
+						<li class="btnThree">下一页</li>
+					</ul>
+				</div>
+				
+			</div>	
+		</div>					<!-- 内容三 -->
+		<div class="footer">								<!-- 底部 -->
+			<div class="footOne">
+				<div>
+					<div>
+						<p><image src="image/logo.png"></image></p>
+						<span>向往自由，困于代码</span>
+					</div>
+				</div>
+			</div>
+			<div class="footTwo">Copyright @2020 ItEc TopCsa</div>
+		</div>
+		<script>
+			var pageSize = 1;
+			var page = 1;
+			var count = 0;			//Math.ceil();
+			$(function(){
+				var data = getData();
+				data = JSON.parse(data);
+				var list = data.list;
+				var html = ''
+				list.forEach(function(item){
+					html +=
+					'<div class="contentExam">'+
+						'<div class="ExamOne">'+
+							'<div class="ExamImg">'+
+								'<img src="'+item.img_url+'" alt="'+item.title+'">'+
+							'</div>'+
+							'<div class="ExamdEtailed">'+
+								'<div class="ExamCont">'+
+									'<h4 class="ExamTit "><span class="ExamH4">已更新</span>'+item.title+'</h4>'+
+									'<div class="ExamDD"><p>'+item.desc+'</p></div>'+
+									'<div class="Exambbtn">'+
+										'<div class="ExambbtnD1">题目数量：'+item.num+'</div>'+
+										'<div class="ExambbtnD2">测试时间：'+item.times+'分钟 </div>'+
+										'<div class="ExambbtnD3" onclick="jumpDetail('+item.id+')">进入测试</div>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>'+
+					'</div>';
+				})
+				$("#dataList").html(html);
+				
+			})
+			function jumpDetail(id){
+				window.location.href = './details.html?id='+id
+				console.log(id)
+			}
+		</script>	
+	
+</body>
+</html>

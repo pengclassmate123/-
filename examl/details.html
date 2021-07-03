@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>远程教育平台_在线考试</title>
+	<script src="script/jquery-3.5.1.min.js"></script>
+	<script src="script/list.js"></script>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	ul li {
+		list-style: none;
+	}
+	a{
+		text-decoration: none;
+	}
+	body{
+		font-family: -apple-system,"Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;
+		font-size: 12px;
+		/*color: #333;*/
+    	/*background-color: #edeff0;*/
+	}
+	html{
+		-webkit-tap-highlight-color:rgba(0,0,0,0);
+	}
+		.box{
+			width: 1200px;
+			margin: 0 auto;
+		}
+		.main{
+			margin-top: 15px;
+			margin-bottom: 60px;
+			border:1px solid #ccc;
+			width: 900px;
+			box-sizing: border-box;
+		}
+		.mainTit{	
+			height: 50px;
+			line-height: 50px;
+			background-color: #f7f7f7;
+			border-bottom: 3px solid #efefef;
+		}
+		.mainTit h2{
+			padding: 0 30px;
+    		font-size: 16px;
+    		font-weight: normal;
+    		display: block;
+    		float: left;
+		}
+		.mainTit p{
+			padding: 0 10px;
+    		height: 40px;
+    		line-height: 40px;
+   		 	background: #389fc3;
+    		color: #fff;
+    		border-radius: 30px;
+   			display: block;
+   		 	float: left;
+    		margin-top: 5px;
+		}
+		/*.mainimg{
+			margin-top: 100px;	
+		}*/
+		.mainSubject{
+			width: 900px;
+			margin-bottom: 3px;
+			/*border:1px solid #ccc;*/
+		}
+		.mainBox{
+			width: 900px; 
+		}
+		.boxOne{
+			width: 85%;
+    		line-height: 32px;
+    		margin: 0 auto;
+    		border-bottom: 1px solid #e4e4e4;
+		}
+		.boxOne i{
+			width: 25px;
+		    height: 25px;
+		    line-height: 25px;
+		    text-align: center;
+		    display: block;
+		    float: left;
+		    background: #5d9cec;
+		    border-radius: 50%;
+		    margin-left: -50px;
+		    color: #fff;
+		    margin-top: 8px;
+		    font-size: 16px;
+		    font-style:normal;
+		}
+		.boxOne font{
+			font-size: 14px;
+		}
+		.boxOne b{
+			/*display: block;*/
+    		float: right;
+    		margin-right: 0px;
+    		color: red;
+    		font-size: 12px;
+		}
+		.mainExam{
+			width: 85%;
+    		margin: 0 auto;
+   		 	padding: 10px 0;
+    		height: auto;
+		}
+		.option li input{
+			width: 20px;
+    		height: 20px;
+    		display: block;
+    		float: left;
+    		/*margin: 10px 10px 0 0;*/
+		}
+		.option li span{
+			margin-left: 7.5px;
+		}
+		.option li{
+			/*text-align: left;*/
+			font-size: 16px;
+			margin:8px 0;
+		}
+		.right{
+			width: 280px;
+    		float: right;
+		}
+		.rigdtk{
+			width: 130px;
+    		height: 45px;
+    		background: #389fc3;
+    		line-height: 45px;
+    		font-weight: bold;
+    		text-align: center;
+    		font-size: 14px;
+    		display: block;
+    		float: left;
+    		color: #fff;
+		}
+		.rigsz{
+			width: 130px;
+    		height: 45px;
+    		background: #f7f7f7;
+    		line-height: 45px;
+    		font-weight: bold;
+    		text-align: center;
+    		font-size: 14px;
+    		display: block;
+    		float: left;
+    		color: #fff;
+		}
+		.rigtitt{
+			width: 258px;
+			height: 90px;
+			/*padding-top: 45px;*/
+			border:1px solid #777;
+			text-align: center;
+			overflow: hidden;
+		}
+		.ttma{
+			margin:0 9px;
+			overflow: hidden;
+		}
+		.ttdd{
+			width: 120px;
+			height: 45px;
+			float: left;
+			text-align: center;
+			line-height: 45px;
+			border-bottom:1px ssolid #f7f7f7;
+			/*margin: 0 px;*/
+			border-bottom: 1px solid #000;
+		}
+		.ttbom{
+			padding: 10px;
+			overflow: hidden;
+			/*margin:0 9px;*/
+		}
+		.ttmj li{
+			width: 30px;
+			height: 30px;
+			text-align: center;
+			line-height: 30px;
+			color:#fff;
+			background-color:#5d9cec;
+			border:1px solid #fff;
+			float: left;
+		}
+		.floatCont{
+		    width: 280px;
+			position: fixed;
+			top: 15px;
+			/*border:1px solid #777;*/
+			z-index: 1000;
+		}
+		.footer{
+			width: 900px;
+			height: 45px;
+			line-height: 45px;
+			background-color: #F7F7F7;
+			position: fixed;
+			bottom: 0px;
+			
+			bottom: 0px;
+			margin: 0 auto
+		}
+		.public1{
+			width: 20px;
+			height: 20px;
+			margin-top:12.5px;
+		}
+		.public2{
+			font-size: 16px;
+			color: #f00;
+			font-weight:bold;
+			margin-top:12.5px;
+		}
+		.footer button{
+			width: 80px;
+			height: 45px;
+			display: block;
+			background: gray;
+    		cursor: not-allowed;
+    		float: right;
+    		color: #fff;
+    		font-size:16px;
+    		font-weight:bold;
+		}
+		.answer_show{
+			display: none;
+		}
+		#inp{
+			border:0;
+			border-bottom: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="main">
+			<div class="mainTit"><h2>单选题</h2><p class="listTit">共50题，合计100分</p></div>
+				<div class="mainSubject">
+					<ul class="mainBox" id='objList'>
+						<li>
+							<div class="boxOne"><i>1</i><font>请问JS中的简单数据类型有几种？</font><b>答案：C</b></div>
+							<div class="mainExam">
+								<ul class="option">
+									<li><input type="radio" name="1"><span>A.5</span></li>
+									<li><input type="radio" name="1"><span>B.6</span></li>
+									<li><input type="radio" name="1"><span>C.7</span></li>
+									<li><input type="radio" name="1"><span>D.8</span></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<div class="boxOne"><i>2</i><font>以下哪条语句会产生运行错误</font><b>答案：A	</b></div>
+							<div class="mainExam">
+								<ul class="option">
+									<li><input type="radio" name="2"><span>A.var obj = ();</span></li>
+									<li><input type="radio" name="2"><span>B.var obj = [];</span></li>
+									<li><input type="radio" name="2"><span>C.var obj = {};</span></li>
+									<li><input type="radio" name="2"><span>D.var obj = ;</span></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<div class="boxOne"><i>3</i><font>请问JS中的简单数据类型有几种？</font><b>答案：B</b></div>
+							<div class="mainExam">
+								<ul class="option">
+									<li><input type="radio" name="3"><span>A.with</span></li>
+									<li><input type="radio" name="3"><span>B.parent</span></li>
+									<li><input type="radio" name="3"><span>C.class</span></li>
+									<li><input type="radio" name="3"><span>D.void</span></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+		<!-- 	<div class="mainTit  mainimg"><h2>图片题</h2><p class="listTit">共50题，合计100分</p></div>
+				<div class="mainSubject">
+						<ul class="mainBox" id='objList'>
+							<li>
+								<div class="boxOne"><i>1</i><font>请问JS中的简单数据类型有几种？</font><b>答案：C</b></div>
+								<div class="mainExam">
+									<ul class="option">
+										<li><input type="radio" name="1"><span>A.5</span></li>
+										<li><input type="radio" name="1"><span>B.6</span></li>
+										<li><input type="radio" name="1"><span>C.7</span></li>
+										<li><input type="radio" name="1"><span>D.8</span></li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<div class="boxOne"><i>2</i><font>以下哪条语句会产生运行错误</font><b>答案：A	</b></div>
+								<div class="mainExam">
+									<ul class="option">
+										<li><input type="radio" name="2"><span>A.var obj = ();</span></li>
+										<li><input type="radio" name="2"><span>B.var obj = [];</span></li>
+										<li><input type="radio" name="2"><span>C.var obj = {};</span></li>
+										<li><input type="radio" name="2"><span>D.var obj = ;</span></li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<div class="boxOne"><i>3</i><font>请问JS中的简单数据类型有几种？</font><b>答案：B</b></div>
+								<div class="mainExam">
+									<ul class="option">
+										<li><input type="radio" name="3"><span>A.with</span></li>
+										<li><input type="radio" name="3"><span>B.parent</span></li>
+										<li><input type="radio" name="3"><span>C.class</span></li>
+										<li><input type="radio" name="3"><span>D.void</span></li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+				</div>
+			
+			<div class="mainTit  mainimg"><h2>填空题</h2><p class="listTit">共50题，合计100分</p></div>
+				<div class="mainSubject">
+						<ul class="mainBox" id='objList'>
+							<li>
+								<div class="boxOne"><i>1</i><font>请问JS中的简单数据类型有<input type="text" value="" id="inp" onfocus = "col()" onblur = "vul()"/>种？</font></div>
+								
+							</li>
+							<li>
+								<div class="boxOne"><i>2</i><font>以下哪条语句会产生运行错误</font><b>答案：A	</b></div>
+								<div class="mainExam">
+									<ul class="option">
+										<li><input type="radio" name="2"><span>A.var obj = ();</span></li>
+										<li><input type="radio" name="2"><span>B.var obj = [];</span></li>
+										<li><input type="radio" name="2"><span>C.var obj = {};</span></li>
+										<li><input type="radio" name="2"><span>D.var obj = ;</span></li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<div class="boxOne"><i>3</i><font>请问JS中的简单数据类型有几种？</font><b>答案：B</b></div>
+								<div class="mainExam">
+									<ul class="option">
+										<li><input type="radio" name="3"><span>A.with</span></li>
+										<li><input type="radio" name="3"><span>B.parent</span></li>
+										<li><input type="radio" name="3"><span>C.class</span></li>
+										<li><input type="radio" name="3"><span>D.void</span></li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+				</div> -->
+			<div class="footer">
+				<img src="image/time.png" class="public1">
+				<span class="public2 lastTime">00:00:00</span><span class="public2"></span>
+				<button>交卷</button>
+			</div>
+		</div>
+	</div>
+	<div class="right">
+		<div class="floatCont">
+			<div class="rigtit"><span class="rigdtk">答题卡</span><span class="rigsz"><img src="image/time.png" class="public1"><span class="public2 lastTime">00:00:00</span><span class="public2"></span class="public2"></span></div>
+			<div>
+				<div class="rigtitt">
+					<div class="ttma">
+						<div class="ttlef  ttdd">单选题</div>
+						<div class="ttrig  ttdd">共50题</div>
+					</div>
+					<div class="ttbom">
+						<ul class="ttmj">
+							<li>1</li>
+							<li>2</li>
+							<li>3</li>
+						</ul>
+					</div>
+				</div>
+			<div>
+			</div>
+		</div>
+	<script>
+		var endTime = '';
+		$(function(){
+			var id = GetQueryString('id');
+			var detail = getDetail(id)
+			detail = JSON.parse(detail);
+			var obj_list = detail.objs;
+			var listhtml = '';
+			var listLi = '';
+			var listTit = '共'+detail.num+'题，合计'+detail.score+'分';
+			$('.listTit').html(listTit);
+			var listNum = '共'+detail.num+'题';
+			$('.ttrig').html(listNum);
+			obj_list.forEach(function(item,key){
+				key++;
+				listLi += '<li>'+key+'</li>';//<a href=+"[item.mj]+options['+item.id+']"></a>
+				listhtml +=
+					'<li>'+
+						'<div class="boxOne">'+
+							'<i>'+key+'</i><font>'+item.title+'</font><b class="answer_show">答案：'+item.answer+'</b>'+
+						'</div>'+
+						'<div class="mainExam">'+
+							'<ul class="option">';
+							item.option_list.forEach(function(value){
+								listhtml += '<li><input type="radio" name= "'+item.id+'" value = "'+value.id+'"><span>'+value.flag+'.'+value.option+'</span></li>';//+"options['+item.id+']"
+							})
+								listhtml +=
+							'</ul>'+
+						'</div>'+
+					'</li>'
+			})
+			console.log(detail)
+			$('#objList').html(listhtml);
+			$('.ttmj').html(listLi);
+			countTime(detail.times);
+		})
+		/**
+		 * 倒计时
+		 * [countTime description]
+		 * @param  {[type]} times [description]
+		 * @return {[type]}       [description]
+		 */
+		function countTime(times){
+			var countdownMinute = parseInt(times);//10分钟倒计时 
+			var startTimes = new Date();//开始时间 new Date('2016-11-16 15:21'); 
+			var endTimes = new Date(startTimes.setMinutes(startTimes.getMinutes()+countdownMinute));//结束时间 
+			var curTimes = new Date();//当前时间 
+			var surplusTimes = endTimes.getTime()/1000 - curTimes.getTime()/1000;//结束毫秒-开始毫秒=剩余倒计时间
+			    // 进入倒计时 
+			countdowns = window.setInterval(function(){ 
+				surplusTimes--;
+				var	h=Math.floor(surplusTimes/60/60)
+				var min_total = Math.floor(surplusTimes / 60);
+				if(min_total < 60){
+					var minu = min_total; 
+				}else{
+					var minu = Math.floor(min_total % 60);
+				}
+				//var minu = Math.floor(surplusTimes/60); 
+				var secd = Math.round(surplusTimes%60); 
+				h = h.toString().padStart(2,'0');
+				minu = minu.toString().padStart(2,'0');
+				secd = secd.toString().padStart(2,'0');
+				$('.lastTime').html(h+':'+minu+':'+secd)
+				console.log(h+':'+minu+':'+secd); 
+				if(surplusTimes<=0){
+					finishEnd();
+					$('.lastTime').html("00:00:00")
+					clearInterval(countdowns); 
+				} 
+			},1000); 
+		}	
+
+		
+		/**
+		 * 获取url参数
+		 * [GetQueryString description]
+		 * @param {[type]} name [description]
+		 */
+		function GetQueryString(name)
+		{
+			var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if(r!=null)return  unescape(r[2]); return null;
+		}
+		/**
+		 * 结束倒计时调用
+		 * [finishEnd description]
+		 * @return {[type]} [description]
+		 */
+		function finishEnd(){
+			$('.answer_show').css('display','block');
+		}
+    	    
+	</script>
+	<script type="text/javascript">
+		let inp1 = document.getElementById("inp");
+		let btn = document.getElementById("btn");
+		function col(){
+			console.log(11);
+			inp1.style.borderBottom = '1px solid #000';
+		}
+		function vul(){
+			console.log(inp1.value);
+		}
+		// btn.onclick = function (){
+		// console.log(inp1.value);
+		// }
+	</script>
+</body>
+
+</html>
